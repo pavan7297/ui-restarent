@@ -1,0 +1,52 @@
+[
+    {
+      "id": 1,
+      "name": "Margherita Pizza",
+      "description": "Classic cheese and tomato pizza with fresh basil.",
+      "price": 8.99,
+      "category": "Pizza",
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Pepperoni Pizza",
+      "description": "Spicy pepperoni with mozzarella on a crispy crust.",
+      "price": 10.49,
+      "category": "Pizza",
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Caesar Salad",
+      "description": "Romaine lettuce with Caesar dressing, croutons, and parmesan.",
+      "price": 6.50,
+      "category": "Salad",
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "Grilled Chicken Sandwich",
+      "description": "Grilled chicken breast with lettuce and tomato on a bun.",
+      "price": 7.25,
+      "category": "Sandwiches",
+      "available": true
+    },
+    {
+      "id": 5,
+      "name": "French Fries",
+      "description": "Crispy golden fries with sea salt.",
+      "price": 3.00,
+      "category": "Sides",
+      "available": true
+    },
+    {
+      "id": 6,
+      "name": "Chocolate Lava Cake",
+      "description": "Warm chocolate cake with a gooey molten center.",
+      "price": 4.99,
+      "category": "Dessert",
+      "available": false
+    }
+    
+  ]
+  

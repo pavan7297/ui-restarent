@@ -1,0 +1,129 @@
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <!-- <aside class="w-60 bg-white shadow-lg p-6 flex flex-col space-y-4">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Restaurant POS</h2>
+  
+      <a
+        [routerLink]="'/Dashboard'"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+  
+      <a
+        (click)="routersOrder()"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>receipt</mat-icon>
+        <span>Orders</span>
+      </a>
+  
+      <a
+        [routerLink]="'/items'"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>restaurant_menu</mat-icon>
+        <span>Items</span>
+      </a>
+  
+      <a
+        [routerLink]="'/tables'"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>table_chart</mat-icon>
+        <span>Tables</span>
+      </a>
+  
+      <a
+        [routerLink]="'/staff'"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>people</mat-icon>
+        <span>Staff</span>
+      </a>
+  
+      <a
+        [routerLink]="'/reports'"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>bar_chart</mat-icon>
+        <span>Reports</span>
+      </a>
+  
+      <a
+        [routerLink]="'/settings'"
+        class="flex items-center space-x-2 text-gray-700 hover:bg-gray-100 px-3 py-2 rounded"
+      >
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </a>
+    </aside> -->
+  <app-aside></app-aside>
+    <!-- Items Content Area -->
+    <main class="flex-1 p-6 overflow-y-auto bg-gray-50">
+      <h1 class="text-3xl font-bold text-gray-800 mb-6">Menu Items</h1>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          *ngFor="let item of menu"
+          class="bg-white shadow rounded-lg p-4 border"
+        >
+          <div class="flex justify-between items-center">
+            <h2 class="text-lg font-semibold text-gray-800">{{ item.name }}</h2>
+            <span class="text-sm text-gray-600">₹{{ item.price }}</span>
+          </div>
+  
+          <p class="text-sm text-gray-500 mt-2">Category: {{ item.category }}</p>
+  
+          <!-- Toggle and Buttons -->
+          <div class="flex justify-between items-center mt-4">
+            <div class="flex items-center space-x-2">
+              <label class="text-sm text-gray-600">Available:</label>
+              <button
+                (click)="toggleAvailability(item)"
+                [ngClass]="{
+                  'bg-green-500': item.available,
+                  'bg-red-500': !item.available
+                }"
+                class="w-10 h-5 flex items-center rounded-full p-1 transition-colors duration-300"
+              >
+                <div
+                  [ngClass]="{
+                    'translate-x-5': item.available,
+                    'translate-x-0': !item.available
+                  }"
+                  class="bg-white w-4 h-4 rounded-full shadow transform transition-transform duration-300"
+                ></div>
+              </button>
+            </div>
+  
+            <div class="flex">
+              <button
+                (click)="editItem(item)"
+                class="text-blue-600 hover:underline text-sm mr-4"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteItem(item)"
+                class="text-red-500 hover:underline text-sm"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="mt-8">
+        <button
+          (click)="addItem()"
+          class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Add New Item
+        </button>
+      </div>
+    </main>
+  </div>
+  

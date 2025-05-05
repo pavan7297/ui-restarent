@@ -1,0 +1,58 @@
+<div class="bg-white p-6 rounded shadow-xl w-[90%] max-w-md">
+  <h2 class="text-xl font-bold mb-4">Table Reservation</h2>
+  <!-- <div *ngIf="reservationSuccess" class="text-green-500 mb-4">
+        Reservation successful! Thank you, {{ name }}.
+    </div>
+    <div *ngIf="reservationError" class="text-red-500 mb-4">
+        Error: {{ reservationError }}
+    </div> -->
+
+  <form (ngSubmit)="submitReservation()" class="space-y-4">
+    <div>
+      <label class="block mb-1 font-medium">Name</label>
+      <input
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+    <div>
+      <label class="block mb-1 font-medium">Phone Number</label>
+      <input
+        type="tel"
+        [(ngModel)]="phone"
+        name="phone"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+    <div>
+      <label class="block mb-1 font-medium">Guests</label>
+      <input
+        type="number"
+        [(ngModel)]="guests"
+        name="guests"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+    <div>
+      <label class="block mb-1 font-medium">Reservation Time</label>
+      <input
+        type="datetime-local"
+        [(ngModel)]="time"
+        name="time"
+        required
+        class="w-full p-2 border rounded"
+      />
+    </div>
+    <button
+      type="submit"
+      class="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700"
+    >
+      Confirm Reservation
+    </button>
+  </form>
+</div>

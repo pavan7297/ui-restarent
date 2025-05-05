@@ -1,0 +1,66 @@
+<div class="p-6">
+    <h1 class="text-3xl font-bold mb-8 flex items-center gap-2">
+      <span class="material-icons text-indigo-600">bar_chart</span>
+      Reports Dashboard
+    </h1>
+  
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <!-- Sales Chart -->
+      <div class="bg-white rounded shadow p-4 flex flex-col">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+          <span class="material-icons text-green-600">trending_up</span>
+          Sales Chart
+        </h2>
+        <div class="flex-1">
+          <p-chart type="bar" [data]="salesChartData" [options]="chartOptions" styleClass="h-60"></p-chart>
+        </div>
+      </div>
+  
+      <!-- Payment Summary -->
+      <div class="bg-white rounded shadow p-4 flex flex-col">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+          <span class="material-icons text-purple-500">payments</span>
+          Payment Summary
+        </h2>
+        <div class="flex-1">
+          <p-chart type="pie" [data]="paymentChartData" [options]="chartOptions" styleClass="h-60"></p-chart>
+        </div>
+      </div>
+  
+      <!-- Most Ordered Items -->
+      <div class="bg-white rounded shadow p-4">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+          <span class="material-icons text-orange-500">fastfood</span>
+          Most Ordered Items
+        </h2>
+        <ul class="text-gray-700 list-disc ml-6 space-y-1">
+          <li *ngFor="let item of mostOrdered">{{ item }}</li>
+        </ul>
+      </div>
+  
+      <!-- Inventory Overview Table (full-width row) -->
+      <div class="bg-white rounded shadow p-4 col-span-1 lg:col-span-2 xl:col-span-3">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">
+          <span class="material-icons text-red-500">inventory_2</span>
+          Inventory Overview
+        </h2>
+        <p-table [value]="inventoryData" class="p-datatable-sm">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Item</th>
+              <th>Status</th>
+              <th>Stock</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ item.stock }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+  
