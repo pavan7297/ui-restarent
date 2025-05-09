@@ -1,0 +1,25 @@
+::ng-deep .p-inputtext,
+::ng-deep .p-multiselect,
+::ng-deep .p-textarea,
+::ng-deep .p-card,
+::ng-deep .p-inputnumber input {
+  background-color: white !important;
+  color: #1f2937 !important; /* Tailwind's text-gray-900 */
+  border: 1px solid #d1d5db !important; /* border-gray-300 */
+  border-radius: 0.375rem; /* rounded */
+}
+
+
+::ng-deep .p-multiselect-label {
+    color: black !important;
+  }
+  
+  ::ng-deep .p-multiselect-token {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #d1d5db !important; /* Optional: border-gray-300 */
+  }
+  
+  ::ng-deep .p-multiselect-token-label {
+    color: black !important;
+  }

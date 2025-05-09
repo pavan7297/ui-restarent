@@ -1,0 +1,84 @@
+<!-- Full Page Wrapper -->
+<div class="min-h-screen bg-gray-100 flex">
+    <!-- Sidebar (Aside Component) -->
+    <app-aside></app-aside>
+  
+    <!-- Main Content -->
+    <div class="flex-1 p-6 overflow-y-auto">
+      <div class="container mx-auto flex flex-col items-center gap-8">
+        
+        <!-- Add Table Card -->
+        <div class="w-full max-w-3xl bg-white p-6 rounded-xl shadow-lg">
+          <h2 class="text-2xl font-bold mb-4 text-center">Add Table</h2>
+          <div class="flex flex-col md:flex-row gap-4">
+            <input
+              type="text"
+              [(ngModel)]="tableName"
+              placeholder="Table Name"
+              class="border border-gray-300 rounded px-4 bg-white py-2 flex-1"
+            />
+            <button
+              (click)="addTABLE()"
+              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+            >
+              Add Table
+            </button>
+          </div>
+        </div>
+  
+        <!-- Table Booking Section -->
+        <div class="w-full max-w-4xl bg-white p-6 rounded-xl shadow-md">
+          <!-- Header + Date -->
+          <h2 class="text-2xl font-bold text-center mb-4">Table Booking</h2>
+          <div class="flex items-center gap-4 mb-6 justify-center">
+            <label class="font-medium">Select Date:</label>
+            <input
+              type="date"
+              [(ngModel)]="selectedDate"
+              (change)="onDateChange()"
+              class="border rounded px-3 py-2"
+            />
+          </div>
+  
+          <!-- Table Grid -->
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-center">Tables on {{ selectedDate }}</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div
+                *ngFor="let table of tables"
+                (click)="selectTable(table)"
+                class="cursor-pointer p-4 rounded-lg text-center shadow transition"
+                [ngClass]="{
+                  'bg-green-200': table.status === 'available',
+                  'bg-red-300': table.status === 'booked',
+                  'ring-4 ring-blue-500': selectedTable?.id === table.id
+                }"
+              >
+                <h4 class="font-bold">Table {{ table.id }}</h4>
+                <p class="text-sm">
+                  {{ table.status === 'booked' ? 'Booked at ' + table.time : 'Available' }}
+                </p>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Table Details -->
+          <div *ngIf="selectedTable" class="bg-gray-50 p-4 rounded-xl shadow-inner">
+            <h3 class="text-lg font-semibold mb-2 text-center">
+              Table {{ selectedTable.id }} Details
+            </h3>
+            <p><strong>Status:</strong> {{ selectedTable.status }}</p>
+            <ng-container *ngIf="selectedTable.status === 'booked'">
+              <p><strong>Booked Time:</strong> {{ selectedTable.time }}</p>
+              <p><strong>Customer:</strong> {{ selectedTable.customer }}</p>
+              <p><strong>Order:</strong></p>
+              <ul class="list-disc pl-5">
+                <li *ngFor="let item of selectedTable.order">{{ item }}</li>
+              </ul>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

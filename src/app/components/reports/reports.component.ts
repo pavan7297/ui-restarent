@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { TableModule } from 'primeng/table';
 import { PrimeIcons } from 'primeng/api';
+import { AsideComponent } from "../shared/aside/aside.component";
 
 @Component({
   selector: 'app-reports',
-  imports: [CommonModule, ChartModule, TableModule],
+  imports: [CommonModule, ChartModule, TableModule, AsideComponent],
   templateUrl: './reports.component.html',
   styleUrl: './reports.component.css',
 })

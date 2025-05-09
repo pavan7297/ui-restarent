@@ -5,7 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRadioModule } from '@angular/material/radio';
 import { Router, RouterLink } from '@angular/router';
-import { AsideComponent } from "../shared/aside/aside.component";
+import { AsideComponent } from '../shared/aside/aside.component';
+import { OrderService } from '../../services/orderServices/order.service';
 
 @Component({
   selector: 'app-order',
@@ -15,8 +16,8 @@ import { AsideComponent } from "../shared/aside/aside.component";
     MatIconModule,
     MatRadioModule,
     MatButtonModule,
-    AsideComponent
-],
+    AsideComponent,
+  ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css',
 })
@@ -24,15 +25,37 @@ export class OrderComponent implements OnInit {
   orders: any[] = [];
 
   ngOnInit(): void {
-    const storedOrders = localStorage.getItem('orders');
-    this.orders = storedOrders ? JSON.parse(storedOrders) : [];
+    this.getorders();
   }
 
-  constructor(private route:Router) {
+  constructor(
+    private route: Router,
+    private placeOrdersService: OrderService
+  ) {}
+
+  getorders() {
+    this.placeOrdersService.getOrderItems().subscribe((data) => {
+      this.orders = data;
+    });
+  }
+
+  updateOrderStatus(order: any) {
+    const data = {
+      status: order.status,
+    };
+
     
+
+    const requestData = { ...data, id: order._id };
+    this.placeOrdersService
+      .updateStatus(requestData, data)
+      .subscribe((response) => {
+        console.log("retuned",response);
+      });
+    console.log(requestData);
   }
 
   routersOrder() {
-    this.route.navigate([`order`])
+    this.route.navigate([`order`]);
   }
 }

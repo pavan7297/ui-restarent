@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AsideComponent } from "../shared/aside/aside.component";
+import { AsideComponent } from '../shared/aside/aside.component';
+import { OrderService } from '../../services/orderServices/order.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +17,14 @@ import { AsideComponent } from "../shared/aside/aside.component";
     MatIconModule,
     MatRadioModule,
     MatButtonModule,
-    AsideComponent
-],
+    AsideComponent,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
+
+
   menu: any[] = [];
   cart: any[] = [];
   name: string = '';
@@ -29,7 +32,7 @@ export class DashboardComponent implements OnInit {
   email: string = '';
   paymentMethod: string = 'cash';
 
-  constructor(private menus: MenuService, private route: Router) {}
+  constructor(private menus: MenuService, private route: Router, private placeOrdersService:OrderService) {}
 
   ngOnInit(): void {
     // Load menu items
@@ -51,7 +54,7 @@ export class DashboardComponent implements OnInit {
 
   addToCart(item: any): void {
     // Check if item already exists in the cart
-    const existingItem = this.cart.find((cartItem) => cartItem.id === item.id);
+    const existingItem = this.cart.find((cartItem) => cartItem._id === item._id);
 
     if (existingItem) {
       existingItem.quantity += 1; // Increase quantity if item exists
@@ -108,12 +111,19 @@ export class DashboardComponent implements OnInit {
       timestamp: new Date().toISOString(),
     };
 
-    let previousOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-    previousOrders.push(orderData);
+    console.log('state', orderData);
+    this.placeOrdersService.postOrder(orderData).subscribe(
+      (response) => {
+        console.log('Order placed successfully:', response);
+      }
+    );
+    // Save order to localStorage (optional)
+    // let previousOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+    // previousOrders.push(orderData);
 
-    localStorage.setItem('orders', JSON.stringify(previousOrders));
+    // localStorage.setItem('orders', JSON.stringify(previousOrders));
 
-    console.log('Order placed successfully:', orderData);
+    // console.log('Order placed successfully:', orderData);
 
     // Clear cart and form fields
     this.cart = [];
@@ -127,6 +137,6 @@ export class DashboardComponent implements OnInit {
   // Rouuters
 
   routersOrder() {
-    this.route.navigate([`order`])
+    this.route.navigate([`order`]);
   }
 }

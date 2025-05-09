@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { TablereservationComponent } from '../shared/tablereservation/tablereservation.component';
+import { TablereservationComponent } from '../../shared/tablereservation/tablereservation.component';
 import { Route, Router } from '@angular/router';
-import { AsideComponent } from "../shared/aside/aside.component";
+import { AsideComponent } from "../../shared/aside/aside.component";
 
 @Component({
   selector: 'app-tables',
